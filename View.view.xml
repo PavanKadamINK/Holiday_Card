@@ -1,0 +1,117 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="com.winslow.yve.Holiday_Card.Card">
+
+    <VBox class="holidayContainer" visible="{= ${oVisibleModel>/BTN} === false ? true : false}">
+
+        <List id="ProductList" items="{path: 'PublicHoliday>/'}" showSeparators="None">
+            <items>
+                <CustomListItem>
+                    <VBox width="100%" class="holidayItem">
+                        <Text text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatTopDate' }" class="holidayDate" wrapping="true"/>
+                        <Text text="{PublicHoliday>Description}" class="holidayTitle" wrapping="true"/>
+                        <Text text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatSubText' }" class="holidaySubText" wrapping="true"/>
+                       <HBox class="holidayDivider">
+                            <VBox class="dividerLine"/>
+                        </HBox>
+
+                    </VBox>
+                </CustomListItem>
+            </items>
+        </List>
+        <Link  id="idAllHolidayBtn" text="VIEW ALL HOLIDAYS" class="viewAllLink" press="onViewAllHolidays"/>
+    </VBox>
+
+
+    <HBox class="holidayContainer" width="100%" visible="{oVisibleModel>/BTN}">
+
+        <!-- LEFT : PUBLIC HOLIDAYS -->
+        <VBox width="50%" class="holidaySection">
+
+           <HBox justifyContent="Center">
+                <Title text="Public Holidays" level="H1" class="sapUiSmallMargin"/>
+            </HBox>
+
+            <List
+                items="{
+                    path: 'PublicHoliday>/',
+                    filters: [
+                        { path: 'Type', operator: 'EQ', value1: 'Public Holiday' }
+                    ]
+                }"
+                showSeparators="None">
+
+                <items>
+                    <CustomListItem>
+                        <VBox class="holidayItem">
+
+                            <Text
+                                text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatTopDate' }"
+                                class="holidayDate"/>
+
+                            <Text
+                                text="{PublicHoliday>Description}"
+                                class="holidayTitle"/>
+
+                            <Text
+                                text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatSubText' }"
+                                class="holidaySubText"/>
+
+                            <HBox class="holidayDivider">
+                                <VBox class="dividerLine"/>
+                            </HBox>
+
+                        </VBox>
+                    </CustomListItem>
+                </items>
+            </List>
+
+        </VBox>
+
+        <!-- RIGHT : ROSTERED HOLIDAYS -->
+        <VBox width="50%" class="holidaySection">
+
+             <HBox justifyContent="Center">
+                <Title text="Rostered Holidays" level="H1" class="sapUiSmallMargin"/>
+            </HBox>
+
+            <List
+                items="{
+                    path: 'PublicHoliday>/',
+                    filters: [
+                        { path: 'Type', operator: 'EQ', value1: 'Rostered Holiday' }
+                    ]
+                }"
+                showSeparators="None">
+
+                <items>
+                    <CustomListItem>
+                        <VBox class="holidayItem">
+
+                            <Text
+                                text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatTopDate' }"
+                                class="holidayDate"/>
+
+                            <Text
+                                text="{PublicHoliday>Description}"
+                                class="holidayTitle"/>
+
+                            <Text
+                                text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatSubText' }"
+                                class="holidaySubText"/>
+
+                            <HBox class="holidayDivider">
+                                <VBox class="dividerLine"/>
+                            </HBox>
+
+                        </VBox>
+                    </CustomListItem>
+                </items>
+            </List>
+
+        </VBox>
+
+    </HBox>
+
+</mvc:View>

@@ -1,0 +1,63 @@
+{
+	"_version": "1.15.0",
+	"sap.app": {
+		"id": "com.winslow.yve.Holiday_Card",
+		"type": "card",
+		"title": "Holiday Card",
+		"subTitle": "",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+        "deviceTypes": {"desktop": true, "phone": true, "tablet": true},
+		"icons": {
+			"icon": "sap-icon://technical-object"
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.winslow.yve.Holiday_Card.View",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.38",
+			"libs": {
+				"sap.m": {}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		}
+	},
+	"sap.card": {
+		"type": "Component",
+        "designtime": "dt/configuration",
+		"header": {
+			"title": "",
+			"visible": false
+		},
+		"configuration": {
+			"destinations": {
+				"JAM": {
+					"name": "JAM",
+					"label": "BTP JAM Destination"
+				},
+				"BMSPortal_API": {
+					"name": "BMSPortal_API",
+					"label": "BTP CAP Destination"
+				}
+			}
+		}
+	},
+    "sap.platform.mobilecards": {
+        "compatible": false
+    }
+}

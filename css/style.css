@@ -1,0 +1,46 @@
+.holidayContainer {
+    padding-left: 16px;
+    padding-right: 16px;
+    gap: 30px;
+}
+
+.holidayItem {
+    padding: 8px 0;
+}
+
+.holidayDate {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.holidayTitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.holidaySubText {
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.holidayDivider {
+    margin-top: 10px;
+    color: #999;
+}
+
+.viewAllLink {
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.holidayDivider {
+    margin-top: 10px;
+}
+
+.dividerLine {
+    width: 100%;
+    height: 2.5px;
+    border-bottom: 2px dashed #999;
+}
