@@ -14,9 +14,30 @@ sap.ui.define([
 			// Set visibility based on Title
 			var oModel = new sap.ui.model.json.JSONModel({ BTN: sTitle === "Holiday" });
 			this.getView().setModel(oModel, "oVisibleModel");
+
+			this.getView().setBusy(true);
+			this.getView().attachModelContextChange(this._onModelArrival, this);
+            this._onModelArrival();
 		},
 
-		onAfterRendering: function () {
+		_onModelArrival: function () {
+			debugger;
+            // Get the model from the Component
+            var oODataModel = this.getOwnerComponent().getModel();
+
+            // Check if the model is defined yet
+            if (oODataModel) {
+                // 3. Success! Stop listening so this doesn't run again
+                this.getView().detachModelContextChange(this._onModelArrival, this);
+
+                // 4. Wait for metadata to be ready before calling .read()
+                oODataModel.metadataLoaded().then(function () {
+                    this._loadData();
+                }.bind(this));
+            }
+        },
+
+		_loadData: function () {
 			debugger;
 
 			var bBtnVisible = this.getView().getModel("oVisibleModel").getProperty("/BTN");
