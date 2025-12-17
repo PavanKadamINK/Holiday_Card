@@ -73,8 +73,8 @@ sap.ui.define([
 			var displayText = "Public & Rostered Holiday"
 			this.getOwnerComponent().getModel().read("/GetFPGrpID", {
 				success: function (oData) {
-					// const grpID = oData.GetFPGrpID;
-					const grpID = "jcxWp3EPsdSsAwdstwX01k";
+					const grpID = oData.GetFPGrpID;
+					// const grpID = "jcxWp3EPsdSsAwdstwX01k";
 					if (!grpID) {
 						oView.setBusy(false);
 						return MessageToast.show("Group ID of Forms & Procedures not found");
