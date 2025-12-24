@@ -36,9 +36,9 @@
     color: #999;
 }
 
-/* .viewAllLink {
-    margin-bottom: 10px;
-} */
+.viewAllLink {
+    margin-bottom: 5px !important;
+} 
 
 .dividerLine {
     width: 100%;
