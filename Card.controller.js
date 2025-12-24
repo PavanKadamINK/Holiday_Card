@@ -71,9 +71,9 @@ sap.ui.define([
 			const oView = this.getView();
 			oView.setBusy(true);
 			var displayText = "Public & Rostered Holiday"
-			this.getOwnerComponent().getModel().read("/GetFPGrpID", {
+			this.getOwnerComponent().getModel().read("/GetHolidayGrpID", {
 				success: function (oData) {
-					const grpID = oData.GetFPGrpID;
+					const grpID = oData.GetHolidayGrpID;
 					// const grpID = "jcxWp3EPsdSsAwdstwX01k";
 					if (!grpID) {
 						oView.setBusy(false);

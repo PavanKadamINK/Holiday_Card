@@ -4,8 +4,7 @@
     controllerName="com.winslow.yve.Holiday_Card.Card">
 
     <VBox class="holidayContainer" visible="{= ${oVisibleModel>/BTN} === false ? true : false}">
-
-        <List id="ProductList" items="{path: 'PublicHoliday>/'}" showSeparators="None">
+        <List id="ProductList" class="sapUiNoMargin" items="{path: 'PublicHoliday>/'}" showSeparators="None">
             <items>
                 <CustomListItem>
                     <VBox width="100%" class="holidayItem">
@@ -20,12 +19,11 @@
                 </CustomListItem>
             </items>
         </List>
-        <Link  id="idAllHolidayBtn" text="VIEW ALL HOLIDAYS" class="viewAllLink" press="onViewAllHolidays"/>
+        <Link  id="idAllHolidayBtn" text="VIEW ALL HOLIDAYS"  class="viewAllLink sapUiNoMargin" press="onViewAllHolidays"/>
     </VBox>
 
 
-    <HBox class="holidayContainer" width="100%" visible="{oVisibleModel>/BTN}">
-
+    <HBox class="holidayContainerTwo" width="100%" visible="{oVisibleModel>/BTN}">
         <!-- LEFT : PUBLIC HOLIDAYS -->
         <VBox width="50%" class="holidaySection">
 
@@ -70,7 +68,7 @@
         </VBox>
 
         <!-- RIGHT : ROSTERED HOLIDAYS -->
-        <VBox width="50%" class="holidaySection">
+        <VBox width="50%" class="holidayContainerTwo">
 
              <HBox justifyContent="Center">
                 <Title text="Rostered Holidays" level="H1" class="sapUiSmallMargin"/>
