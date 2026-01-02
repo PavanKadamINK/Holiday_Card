@@ -17,25 +17,25 @@ sap.ui.define([
 
 			this.getView().setBusy(true);
 			this.getView().attachModelContextChange(this._onModelArrival, this);
-            this._onModelArrival();
+			this._onModelArrival();
 		},
 
 		_onModelArrival: function () {
 			debugger;
-            // Get the model from the Component
-            var oODataModel = this.getOwnerComponent().getModel();
+			// Get the model from the Component
+			var oODataModel = this.getOwnerComponent().getModel();
 
-            // Check if the model is defined yet
-            if (oODataModel) {
-                // 3. Success! Stop listening so this doesn't run again
-                this.getView().detachModelContextChange(this._onModelArrival, this);
+			// Check if the model is defined yet
+			if (oODataModel) {
+				// 3. Success! Stop listening so this doesn't run again
+				this.getView().detachModelContextChange(this._onModelArrival, this);
 
-                // 4. Wait for metadata to be ready before calling .read()
-                oODataModel.metadataLoaded().then(function () {
-                    this._loadData();
-                }.bind(this));
-            }
-        },
+				// 4. Wait for metadata to be ready before calling .read()
+				oODataModel.metadataLoaded().then(function () {
+					this._loadData();
+				}.bind(this));
+			}
+		},
 
 		_loadData: function () {
 			debugger;
@@ -71,49 +71,48 @@ sap.ui.define([
 			const oView = this.getView();
 			oView.setBusy(true);
 			var displayText = "Public & Rostered Holiday"
-			this.getOwnerComponent().getModel().read("/GetHolidayGrpID", {
+			// this.getOwnerComponent().getModel().read("/GetHolidayGrpID", {
+			// 	success: function (oData) {
+			const grpID = this.getView().getModel("GroupIdModel").getProperty("/GroupId");
+			if (!grpID) {
+				oView.setBusy(false);
+				return MessageToast.show("Group ID of Forms & Procedures not found");
+			}
+			this.getOwnerComponent().getModel("JAM").read(`/Search`, {
+				urlParameters: {
+					"Query": "'" + displayText + "'",
+					"Group": "'" + grpID + "'",
+					"Category": "'workpages'",
+					"$expand": "ObjectReference",
+					"$select": "ObjectReference/Title,ObjectReference/WebURL,ObjectReference/Type",
+				},
 				success: function (oData) {
-					const grpID = oData.GetHolidayGrpID;
-					// const grpID = "jcxWp3EPsdSsAwdstwX01k";
-					if (!grpID) {
-						oView.setBusy(false);
-						return MessageToast.show("Group ID of Forms & Procedures not found");
-					}
-					this.getOwnerComponent().getModel("JAM").read(`/Search`, {
-						urlParameters: {
-							"Query": "'" + displayText + "'",
-							"Group": "'" + grpID + "'",
-							"Category": "'workpages'",
-							"$expand": "ObjectReference",
-							"$select": "ObjectReference/Title,ObjectReference/WebURL,ObjectReference/Type",
-						},
-						success: function (oData) {
-							debugger
-							var oFoundItem = oData.results.find(function (item) {
-								var sTitle = item.ObjectReference.Title || "";
-								var sType = item.ObjectReference.Type || "";
-								return sTitle.toLowerCase().trim() === displayText.toLowerCase().trim() && sType === "NavTab";
-							});
-							if (oFoundItem) {
-								window.location.href = oFoundItem.ObjectReference.WebURL + "?headless=true&title=" + encodeURIComponent("Holiday");
-							} else {
-								MessageToast.show("No item found with Title '" + displayText + "' and Type 'NavTab'.");
-							}
-							oView.setBusy(false);
-						}.bind(this),
-						error: function (oError) {
-							MessageToast.show("Error fetching NavTabs, check console logs for more details");
-							console.log(oError);
-							oView.setBusy(false);
-						}
+					debugger
+					var oFoundItem = oData.results.find(function (item) {
+						var sTitle = item.ObjectReference.Title || "";
+						var sType = item.ObjectReference.Type || "";
+						return sTitle.toLowerCase().trim() === displayText.toLowerCase().trim() && sType === "NavTab";
 					});
+					if (oFoundItem) {
+						window.location.href = oFoundItem.ObjectReference.WebURL + "?headless=true&title=" + encodeURIComponent("Holiday");
+					} else {
+						MessageToast.show("No item found with Title '" + displayText + "' and Type 'NavTab'.");
+					}
+					oView.setBusy(false);
 				}.bind(this),
 				error: function (oError) {
-					MessageToast.show("Error fetching Group ID, check console logs for more details");
+					MessageToast.show("Error fetching NavTabs, check console logs for more details");
 					console.log(oError);
 					oView.setBusy(false);
 				}
 			});
+			// 	}.bind(this),
+			// 	error: function (oError) {
+			// 		MessageToast.show("Error fetching Group ID, check console logs for more details");
+			// 		console.log(oError);
+			// 		oView.setBusy(false);
+			// 	}
+			// });
 		},
 
 		/* Common OData read */

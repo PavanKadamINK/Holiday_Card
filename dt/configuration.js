@@ -9,6 +9,10 @@ sap.ui.define(["sap/ui/integration/Designtime"], function (
         return new Designtime({
             form: {
                 items: {
+                    GroupId: {
+                        manifestpath: "/sap.card/configuration/parameters/GroupId/value",
+                        label: "Group ID"
+                    }
                 }
             },
             preview: {

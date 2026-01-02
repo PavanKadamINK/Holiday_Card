@@ -41,10 +41,16 @@
 		"type": "Component",
         "designtime": "dt/configuration",
 		"header": {
-			"title": "",
+			"title": "{GroupId}",
 			"visible": false
 		},
 		"configuration": {
+			"parameters": {
+				"GroupId": {
+					"type": "string",
+					"label": "Group ID"
+				}
+			},
 			"destinations": {
 				"JAM": {
 					"name": "JAM",
