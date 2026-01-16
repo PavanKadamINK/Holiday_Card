@@ -26,83 +26,40 @@
     <HBox class="holidayContainerTwo" width="100%" visible="{oVisibleModel>/BTN}">
         <!-- LEFT : PUBLIC HOLIDAYS -->
         <VBox width="50%" class="holidaySection">
-
            <HBox justifyContent="Center">
                 <Title text="Public Holidays" level="H1" class="sapUiSmallMargin"/>
             </HBox>
-
-            <List
-                items="{
-                    path: 'PublicHoliday>/',
-                    filters: [
-                        { path: 'Type', operator: 'EQ', value1: 'Public Holiday' }
-                    ]
-                }"
-                showSeparators="None">
-
+            <List items="{path: 'PublicHoliday>/',filters: [{ path: 'Type', operator: 'EQ', value1: 'Public Holiday' }]}" showSeparators="None">
                 <items>
                     <CustomListItem>
                         <VBox class="holidayItem">
-
-                            <Text
-                                text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatTopDate' }"
-                                class="holidayDate"/>
-
-                            <Text
-                                text="{PublicHoliday>Description}"
-                                class="holidayTitle"/>
-
-                            <Text
-                                text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatSubText' }"
-                                class="holidaySubText"/>
-
+                            <Text text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatTopDate' }" class="holidayDate"/>
+                            <Text text="{PublicHoliday>Description}" class="holidayTitle"/>
+                            <Text text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatSubText' }" class="holidaySubText"/>
                             <HBox class="holidayDivider">
                                 <VBox class="dividerLine"/>
                             </HBox>
-
                         </VBox>
                     </CustomListItem>
                 </items>
             </List>
-
         </VBox>
 
         <!-- RIGHT : ROSTERED HOLIDAYS -->
-        <VBox width="50%" class="holidayContainerTwo">
-
+        <VBox width="50%" class="holidaySection">
              <HBox justifyContent="Center">
                 <Title text="Rostered Holidays" level="H1" class="sapUiSmallMargin"/>
             </HBox>
-
-            <List
-                items="{
-                    path: 'PublicHoliday>/',
-                    filters: [
-                        { path: 'Type', operator: 'EQ', value1: 'Rostered Holiday' }
-                    ]
-                }"
-                showSeparators="None">
-
+            <List items="{path: 'PublicHoliday>/',filters: [{ path: 'Type', operator: 'EQ', value1: 'Rostered Holiday' }]}" showSeparators="None">
                 <items>
                     <CustomListItem>
                         <VBox class="holidayItem">
-
-                            <Text
-                                text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatTopDate' }"
-                                class="holidayDate"/>
-
-                            <Text
-                                text="{PublicHoliday>Description}"
-                                class="holidayTitle"/>
-
-                            <Text
-                                text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatSubText' }"
-                                class="holidaySubText"/>
-
+                            <Text text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatTopDate' }" class="holidayDate"/>
+                            <Text text="{PublicHoliday>Description}" class="holidayTitle"/>
+                            <Text text="{ path: 'PublicHoliday>HolidayDate', formatter: '.formatSubText' }" class="holidaySubText"/>
                             <HBox class="holidayDivider">
                                 <VBox class="dividerLine"/>
                             </HBox>
-
                         </VBox>
                     </CustomListItem>
                 </items>
