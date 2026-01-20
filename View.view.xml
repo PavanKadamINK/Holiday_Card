@@ -19,7 +19,7 @@
                 </CustomListItem>
             </items>
         </List>
-        <Link  id="idAllHolidayBtn" text="VIEW ALL HOLIDAYS"  class="viewAllLink sapUiNoMargin" press="onViewAllHolidays"/>
+        <Link  id="idAllHolidayBtn" text="VIEW ALL HOLIDAYS"  class="viewAllLink sapUiNoMargin" press="onViewAllHolidays" visible="{= ${PublicHoliday>/}.length > 0 }"/>
     </VBox>
 
 

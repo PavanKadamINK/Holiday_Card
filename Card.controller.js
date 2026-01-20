@@ -57,10 +57,10 @@ sap.ui.define([
 				this._mDefaultUrlParams = { "$orderby": "HolidayDate asc", "$top": 3 };
 
 				// Call with filters
-				this.onCommonReadCall(this._aDefaultFilters, this._mDefaultUrlParams);
+				this.onCommonReadCall(true);
 
 			} else {
-				this.onCommonReadCall([], {});
+				this.onCommonReadCall(false);
 				this.getView().getModel("oVisibleModel").setProperty("/BTN", true);
 			}
 		},
@@ -116,25 +116,62 @@ sap.ui.define([
 		},
 
 		/* Common OData read */
-		onCommonReadCall: function (aFilters, mUrlParams) {
+		// onCommonReadCall: function (mUrlParams) {
+		// 	debugger;
+		// 	var oView = this.getView();
+		// 	oView.setBusy(true);
+
+		// 	this.getOwnerComponent().getModel().read("/PublicHoliday", {
+		// 		filters: aFilters || [],
+		// 		urlParameters: mUrlParams || {},
+		// 		success: function (oData) {
+		// 			var aFormData = oData.results || [];
+		// 			var oModel = new JSONModel(aFormData);
+		// 			oView.setModel(oModel, "PublicHoliday");
+		// 			oView.setBusy(false);
+		// 		}.bind(this),
+		// 		error: function () {
+		// 			oView.setBusy(false);
+		// 		}.bind(this)
+		// 	});
+		// },
+
+		onCommonReadCall: function (mUrlParams) {
 			debugger;
 			var oView = this.getView();
 			oView.setBusy(true);
 
-			this.getOwnerComponent().getModel().read("/PublicHoliday", {
-				filters: aFilters || [],
-				urlParameters: mUrlParams || {},
+			this.getOwnerComponent().getModel().callFunction("/Holiday", {
+				method: "GET",
+				urlParameters: {
+					sKey: mUrlParams   // true or false
+				},
 				success: function (oData) {
-					var aFormData = oData.results || [];
+					debugger;
+
+					var aFormData = [];
+
+					if (oData && typeof oData.Holiday === "string" && oData.Holiday.trim()) {
+						try {
+							aFormData = JSON.parse(oData.Holiday) || [];
+						} catch (e) {
+							aFormData = [];
+						}
+					}
+
+					// 🔑 ALWAYS set the model (even empty)
 					var oModel = new JSONModel(aFormData);
 					oView.setModel(oModel, "PublicHoliday");
+
 					oView.setBusy(false);
 				}.bind(this),
-				error: function () {
+				error: function (oError) {
+					debugger;
 					oView.setBusy(false);
-				}.bind(this)
+				}
 			});
 		},
+
 		formatTopDate: function (sDate) {
 			if (!sDate) return "";
 
