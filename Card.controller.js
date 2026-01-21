@@ -7,7 +7,7 @@ sap.ui.define([
 
 	return Controller.extend("com.winslow.yve.Holiday_Card.Card", {
 		onInit: function () {
-			debugger;
+			// debugger;
 			// Read URL parameters
 			var oParams = new URLSearchParams(window.location.search);
 			var sTitle = oParams.get("title"); // Holiday
@@ -38,7 +38,7 @@ sap.ui.define([
 		},
 
 		_loadData: function () {
-			debugger;
+			// debugger;
 
 			var bBtnVisible = this.getView().getModel("oVisibleModel").getProperty("/BTN");
 
@@ -67,7 +67,7 @@ sap.ui.define([
 
 		/* View All button */
 		onViewAllHolidays: function () {
-			debugger;
+			// debugger;
 			const oView = this.getView();
 			oView.setBusy(true);
 			var displayText = "Public & Rostered Holiday"
@@ -87,7 +87,7 @@ sap.ui.define([
 					"$select": "ObjectReference/Title,ObjectReference/WebURL,ObjectReference/Type",
 				},
 				success: function (oData) {
-					debugger
+					// debugger
 					var oFoundItem = oData.results.find(function (item) {
 						var sTitle = item.ObjectReference.Title || "";
 						var sType = item.ObjectReference.Type || "";
@@ -137,7 +137,7 @@ sap.ui.define([
 		// },
 
 		onCommonReadCall: function (mUrlParams) {
-			debugger;
+			// debugger;
 			var oView = this.getView();
 			oView.setBusy(true);
 
@@ -147,7 +147,7 @@ sap.ui.define([
 					sKey: mUrlParams   // true or false
 				},
 				success: function (oData) {
-					debugger;
+					// debugger;
 
 					var aFormData = [];
 
@@ -166,7 +166,7 @@ sap.ui.define([
 					oView.setBusy(false);
 				}.bind(this),
 				error: function (oError) {
-					debugger;
+					// debugger;
 					oView.setBusy(false);
 				}
 			});
