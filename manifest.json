@@ -56,8 +56,8 @@
 					"name": "JAM",
 					"label": "BTP JAM Destination"
 				},
-				"BMSPortal_Testing": {
-					"name": "BMSPortal_Testing",
+				"BMSPortal_API_Token": {
+					"name": "BMSPortal_API_Token",
 					"label": "BTP CAP Destination"
 				}
 			}
