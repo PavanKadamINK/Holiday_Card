@@ -21,7 +21,7 @@ sap.ui.define([
 		},
 
 		_onModelArrival: function () {
-			debugger;
+			// debugger;
 			// Get the model from the Component
 			var oODataModel = this.getOwnerComponent().getModel();
 
@@ -101,8 +101,7 @@ sap.ui.define([
 					oView.setBusy(false);
 				}.bind(this),
 				error: function (oError) {
-					MessageToast.show("Error fetching NavTabs, check console logs for more details");
-					console.log(oError);
+					MessageToast.show("No item found with Title");
 					oView.setBusy(false);
 				}
 			});
