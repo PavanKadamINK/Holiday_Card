@@ -108,7 +108,6 @@ sap.ui.define([
 			// 	}.bind(this),
 			// 	error: function (oError) {
 			// 		MessageToast.show("Error fetching Group ID, check console logs for more details");
-			// 		console.log(oError);
 			// 		oView.setBusy(false);
 			// 	}
 			// });

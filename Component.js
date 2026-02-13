@@ -11,7 +11,6 @@ sap.ui.define([
                 manifest: "json"
             },
             onCardReady: function (oCard) {
-                debugger;
                 var oParams = oCard.getManifestEntry("sap.card").configuration.parameters;
                 var sGroupId = oParams?.GroupId?.value || "jcxWp3EPsdSsAwdstwX01k";
                 var oCardModel = new sap.ui.model.json.JSONModel({GroupId: sGroupId});
